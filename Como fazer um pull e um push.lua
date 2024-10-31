@@ -5,7 +5,7 @@ Oque é push?
 Push é enviar os arquivos para o git
 
 como fazer no vs code?
-Para fazer o pull no vs code você vai no source control(embaixo da lupa) e se tiver um pull para fazer ele vai aparecer sync files
+Para fazer o pull no vs code você vai no simbolo de refresh do lado da main na barra no canto inferior esquerdo
 
 Como fazer o push?
 No source control vai aparecer os arquivos que você alterou, então você aperta em commit & push(na seta ao lado do commit) e ele ira enviar os arquivos para o git
