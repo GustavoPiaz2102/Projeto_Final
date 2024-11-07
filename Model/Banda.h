@@ -10,13 +10,17 @@ class Banda {
         vector<Integrante*> vetorIntegrantes; 
         vector<Musica*> Musicas;
     public:
+    
         // Nome & Genero
+
         Banda() : nome(""), genero(""), vetorIntegrantes() {} 
         string get_nome() { return nome; }
         string get_genero() { return genero; }
         void set_nome(string n) { nome = n; }
         void set_genero(string d) { genero = d; }
+
         // Integrante
+
         string get_nome(int a) { return vetorIntegrantes[a]->get_nome(); }
         string get_instrumento(int a) { return vetorIntegrantes[a]->get_instrumento(); }
         int get_idade(int a) { return vetorIntegrantes[a]->get_idade(); }
@@ -24,7 +28,9 @@ class Banda {
         void set_nome(string a, int i) { vetorIntegrantes[i]->set_nome(a); }
         void set_instrumento(string a, int i) { vetorIntegrantes[i]->set_instrumento(a); }
         void set_idade(int a, int i) { vetorIntegrantes[i]->set_idade(a); }
+
         // Musicas
+
         string get_nome(int a) { return Musicas[a]->get_nome(); }
         string get_genero(int a) { return Musicas[a]->get_tempo(); }
         string get_tempo(int a) { return Musicas[a]->get_compositor(); }

@@ -5,8 +5,8 @@
 #include <vector>
 #include "../Model/Show.h"
 #include "../Model/Banda.h"
-#include "../Model/Integrantes.h"
-#include "../Model/Musicas.h"
+#include "../Model/Integrante.h"
+#include "../Model/Musica.h"
 using namespace std;
 
 class View {
