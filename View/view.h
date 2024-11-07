@@ -1,12 +1,12 @@
-#infdef VIEW_H
+#ifndef VIEW_H
 #define VIEW_H
 #include <string>
 #include <iostream>
 #include <vector>
-#include "../Models/Show.h"
-#include "../Models/Banda.h"
-#include "../Models/Integrantes.h"
-#include "../Models/Musicas.h"
+#include "../Model/Show.h"
+#include "../Model/Banda.h"
+#include "../Model/Integrantes.h"
+#include "../Model/Musicas.h"
 using namespace std;
 
 class View {

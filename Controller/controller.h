@@ -2,7 +2,7 @@
 #define CONTROLLER_H
 
 #include "../View/view.h"
-#include "../Model/integrante.h"
+#include "../Model/Integrante.h"
 #include "../Model/Show.h"
 #include "../Banda.h"
 #include "../Musica.h"
@@ -14,7 +14,7 @@ class Controller {
     public:
     ~Controller(){
         delete Musica;
-        delete integrante;
+        delete Integrante;
         delete Banda;
         delete Show;
     }
