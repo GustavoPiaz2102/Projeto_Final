@@ -118,7 +118,46 @@ class View {
                     x++;
                     msg = "Nome do integrante: " + to_string(Integrante->getNome) + " Idade: " + to_string(Integrante->getidade()) + " Instrumento: " + to_string(Integrante->getInstrumento) "\n.";
                 }
-                msg += ""
         }
     }
-}
+    string void mostrar_bandas(const vector<bandas*>& Bandas){
+        string msg = "";
+        int x=0;
+
+        msg += "Aqui estao os dados sobre as bandas!\n";
+
+        if (Bandas.empty()) {
+            mensagem += "Nenhuma banda foi adicionada a esse show ainda :(.";
+            } else {
+                for (const auto& Bandas : Bandas){
+                    x++;
+                    msg = "Nome da banda: " + to_string(Bandas->getBanda) + "\n";
+                }
+        }
+    }
+
+    string void mostrar_shows(const vector<shows*>& Shows){
+        string msg = "";
+        int x=0;
+
+        msg += "Aqui estao os dados sobre os shows!\n";
+
+        if (Bandas.empty()) {
+            mensagem += "Nenhum show foi adicionado ainda :(.";
+            } else {
+                for (const auto& Shows : Shows){
+                    x++;
+                    msg = "Nome do show: " + to_string(Shows->getShow) + "\n";
+                }
+        }
+    }
+
+    static void mostrarTudo(const vector<musicas*>& Musicas, const vector<integrantes*>& Integrantes, const vector<bandas*>& Bandas, const vector<shows*>& Shows){
+        mostrar_musicas(Musicas);
+        mostrar_integrantes(Integrantes);
+        mostrar_bandas(Bandas);
+        mostrar_shows(Shows);
+    }
+};
+
+#endif
