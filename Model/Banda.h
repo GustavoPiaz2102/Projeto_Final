@@ -13,7 +13,7 @@ class Banda {
     
         // Nome & Genero
 
-        Banda() : nome(""), genero(""), vetorIntegrantes() {} 
+        Banda() : nome(""), genero(""), vetorIntegrantes(), Musicas() {} 
         string get_nome() { return nome; }
         string get_genero() { return genero; }
         void set_nome(string n) { nome = n; }
@@ -21,25 +21,19 @@ class Banda {
 
         // Integrante
 
-        string get_nome(int a) { return vetorIntegrantes[a]->get_nome(); }
-        string get_instrumento(int a) { return vetorIntegrantes[a]->get_instrumento(); }
-        int get_idade(int a) { return vetorIntegrantes[a]->get_idade(); }
-
-        void set_nome(string a, int i) { vetorIntegrantes[i]->set_nome(a); }
-        void set_instrumento(string a, int i) { vetorIntegrantes[i]->set_instrumento(a); }
-        void set_idade(int a, int i) { vetorIntegrantes[i]->set_idade(a); }
+        Integrante get_Integrante(int i){return *vetorIntegrantes[i];}
+        void set_Integrante(Integrante a,int i){*vetorIntegrantes[i]=a; }
 
         // Musicas
 
-        string get_nome(int a) { return Musicas[a]->get_nome(); }
-        string get_genero(int a) { return Musicas[a]->get_tempo(); }
-        string get_tempo(int a) { return Musicas[a]->get_compositor(); }
+        Musica get_Musicas(int i){return *Musicas[i];}
+        void set_Musicas(int i, Musica a){*Musicas[i] = a; }
 
-        void set_nome(string a, int i) { Musicas[i]->set_nome(a);}
-        void set_minutos(int a, int i) { Musicas[i]->set_min(a);}
-        void set_segundos(int a, int i) { Musicas[i]->set_seg(a);}
-        void set_compositor(string a, int i) { Musicas[i]->set_compositor(a);}
-
+        //Outras
+        int empty(){
+            if(nome == ""&&genero==""&&vetorIntegrantes.empty()&&Musicas.empty())return 1;
+            else return 0;
+        }
         
 };
 #endif

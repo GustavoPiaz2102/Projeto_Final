@@ -5,3 +5,4 @@
 #include <string>
 using namespace std;
 #endif
+//A função empty dos objetos retorna 1 se o objeto estiver vazio

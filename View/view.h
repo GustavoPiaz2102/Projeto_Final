@@ -26,7 +26,7 @@ class View {
 
     static int menu(){
         int opcao;
-        string msg = "";
+        string mensagem = "";
 
         mensagem += "Digite a opcao que voce deseja: \n";
         mensagem += "1 - Adicionar musicas.\n";
@@ -38,7 +38,7 @@ class View {
         mensagem += "7 - Visualizar as bandas.\n";
         mensagem += "8 - Visualizar os shows que acontecerao.\n";
         mensagem += "0 - Sair.\n";
-        cout << msg << endl;
+        cout << mensagem << endl;
         cin >> opcao;
         return opcao;
     }
@@ -88,24 +88,18 @@ class View {
         cout << msg << endl;
     }
 
-    string void mostrar_musicas(const vector<musicas*>& Musica){
-        string msg = "";
-        int x=0;
-
-        msg += "Aqui estao os dados sobre as musicas!\n";
-
+    void mostrar_musicas(const vector<Musica*>& Musicas){
+        cout << "Aqui estao os dados sobre as musicas!\n";
         if (Musicas.empty()) {
-            mensagem += "Nenhuma musica foi adicionada ainda :(.";
+            cout << "Nenhuma musica foi adicionada ainda :(.";
             } else {
-                for (const auto& Musica : Musicas){
-                    x++;
-                    msg = "Musica: " + to_string(x) + " Compositor: " + to_string(Musica->getMusica()) + "\n.";
+                for (int i = 0;i<Musicas.size();i++){
+                    cout << "["+to_string(i)+"]"+" Musica: " +Musicas[i]->get_nome()+ " Compositor: " + Musicas[i]->get_compositor() + " Duracao: " + Musicas[i]->get_tempo() + "\n.";
                 }
-                msg += ""
         }
     }
 
-    string void mostrar_integrantes(const vector<integrantes*>& Integrantes){
+    void mostrar_integrantes(const vector<integrantes*>& Integrantes){
         string msg = "";
         int x=0;
 
@@ -120,7 +114,7 @@ class View {
                 }
         }
     }
-    string void mostrar_bandas(const vector<bandas*>& Bandas){
+    void mostrar_bandas(const vector<bandas*>& Bandas){
         string msg = "";
         int x=0;
 
@@ -136,7 +130,7 @@ class View {
         }
     }
 
-    string void mostrar_shows(const vector<shows*>& Shows){
+    void mostrar_shows(const vector<Show*>& Shows){
         string msg = "";
         int x=0;
 
@@ -152,7 +146,7 @@ class View {
         }
     }
 
-    static void mostrarTudo(const vector<musicas*>& Musicas, const vector<integrantes*>& Integrantes, const vector<bandas*>& Bandas, const vector<shows*>& Shows){
+    static void mostrarTudo(const vector<Musica*>& Musicas, const vector<Integrante*>& Integrantes, const vector<Banda*>& Bandas, const vector<Show*>& Shows){
         mostrar_musicas(Musicas);
         mostrar_integrantes(Integrantes);
         mostrar_bandas(Bandas);

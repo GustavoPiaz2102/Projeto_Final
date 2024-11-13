@@ -17,6 +17,11 @@ class Musica{
         string get_tempo(){return "A musica tem "+to_string(duracaomin)+" minutos e "+to_string(duracaoseg)+" segundos";}
         string get_nome(){return nome;}
         string get_compositor(){return compositor;}
+
+        int empty(){
+        if(nome==""&&duracaomin==0&&duracaoseg==0&&compositor=="")return 1;
+        else return 0;
+        }
         };
 
 #endif

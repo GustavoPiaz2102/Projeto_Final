@@ -15,5 +15,12 @@ class Integrante {
         void set_nome(string a) { nome = a; }
         void set_instrumento(string a) { instrumento = a; }
         void set_idade(int a) { idade = a; }
+
+        int empty(){
+            if(nome==""&instrumento==""&&idade==0)return 1;
+            else return 0;
+        }
+
+
 };
 #endif

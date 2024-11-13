@@ -4,8 +4,8 @@
 #include "../View/view.h"
 #include "../Model/Integrante.h"
 #include "../Model/Show.h"
-#include "../Banda.h"
-#include "../Musica.h"
+#include "../Model/Banda.h"
+#include "../Model/Banda.h"
 
 class Controller {
     private: 
