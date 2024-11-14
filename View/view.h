@@ -11,6 +11,7 @@ using namespace std;
 
 class View {
     public: 
+    View() {}
     static void bemvinde() {
         cout << "Bem-vindo(a) a formação do line-up do Festival!";
     }
@@ -99,54 +100,45 @@ class View {
         }
     }
 
-    void mostrar_integrantes(const vector<integrantes*>& Integrantes){
-        string msg = "";
-        int x=0;
+    void mostrar_integrantes(const vector<Integrante*>& Integrantes){
 
-        msg += "Aqui estao os dados sobre os integrantes!\n";
+        cout << "Aqui estao os dados sobre os integrantes!\n";
 
         if (Integrantes.empty()) {
-            mensagem += "Nenhum integrante foi adicionado a essa banda ainda :(.";
+            cout << "Nenhum integrante foi adicionado a essa banda ainda :(.";
             } else {
-                for (const auto& Integrante : Integrantes){
-                    x++;
-                    msg = "Nome do integrante: " + to_string(Integrante->getNome) + " Idade: " + to_string(Integrante->getidade()) + " Instrumento: " + to_string(Integrante->getInstrumento) "\n.";
+                for(int i = 0;i<Integrantes.size();i++){
+                    cout << "Nome do integrante: " + Integrantes[i]->get_nome() + " Idade: " + to_string(Integrantes[i]->get_idade()) + " Instrumento: " + Integrantes[i]->get_instrumento() << "\n.";
                 }
         }
     }
-    void mostrar_bandas(const vector<bandas*>& Bandas){
-        string msg = "";
-        int x=0;
+    void mostrar_bandas(const vector<Banda*>& Bandas){
 
-        msg += "Aqui estao os dados sobre as bandas!\n";
+        cout << "Aqui estao os dados sobre as bandas!\n";
 
         if (Bandas.empty()) {
-            mensagem += "Nenhuma banda foi adicionada a esse show ainda :(.";
+            cout << "Nenhuma banda foi adicionada a esse show ainda :(.";
             } else {
-                for (const auto& Bandas : Bandas){
-                    x++;
-                    msg = "Nome da banda: " + to_string(Bandas->getBanda) + "\n";
+                for(int i = 0;i<Bandas.size();i++){
+                    cout << "Nome da banda: " + Bandas[i]->get_nome() + "Genero: " << Bandas[i]->get_genero() << "\n";
                 }
         }
     }
 
     void mostrar_shows(const vector<Show*>& Shows){
-        string msg = "";
-        int x=0;
 
-        msg += "Aqui estao os dados sobre os shows!\n";
+        cout << "Aqui estao os dados sobre os shows!\n";
 
-        if (Bandas.empty()) {
-            mensagem += "Nenhum show foi adicionado ainda :(.";
+        if (Shows.empty()) {
+            cout << "Nenhum show foi adicionado ainda :(.";
             } else {
-                for (const auto& Shows : Shows){
-                    x++;
-                    msg = "Nome do show: " + to_string(Shows->getShow) + "\n";
+                for (int i = 0;Shows.size();i++){
+                    cout << "Nome do show: " + Shows[i]->get_nome() + "\n";
                 }
         }
     }
 
-    static void mostrarTudo(const vector<Musica*>& Musicas, const vector<Integrante*>& Integrantes, const vector<Banda*>& Bandas, const vector<Show*>& Shows){
+    void mostrarTudo(const vector<Musica*>& Musicas, const vector<Integrante*>& Integrantes, const vector<Banda*>& Bandas, const vector<Show*>& Shows){
         mostrar_musicas(Musicas);
         mostrar_integrantes(Integrantes);
         mostrar_bandas(Bandas);
