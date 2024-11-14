@@ -108,7 +108,7 @@ class View {
             cout << "Nenhum integrante foi adicionado a essa banda ainda :(.";
             } else {
                 for(int i = 0;i<Integrantes.size();i++){
-                    cout << "Nome do integrante: " + Integrantes[i]->get_nome() + " Idade: " + to_string(Integrantes[i]->get_idade()) + " Instrumento: " + Integrantes[i]->get_instrumento() << "\n.";
+                    cout << "["+to_string(i)+"]"+"Nome do integrante: " + Integrantes[i]->get_nome() + " Idade: " + to_string(Integrantes[i]->get_idade()) + " Instrumento: " + Integrantes[i]->get_instrumento() << "\n.";
                 }
         }
     }
@@ -120,7 +120,7 @@ class View {
             cout << "Nenhuma banda foi adicionada a esse show ainda :(.";
             } else {
                 for(int i = 0;i<Bandas.size();i++){
-                    cout << "Nome da banda: " + Bandas[i]->get_nome() + "Genero: " << Bandas[i]->get_genero() << "\n";
+                    cout << "["+to_string(i)+"]"+"Nome da banda: " + Bandas[i]->get_nome() + "Genero: " << Bandas[i]->get_genero() << "\n";
                 }
         }
     }

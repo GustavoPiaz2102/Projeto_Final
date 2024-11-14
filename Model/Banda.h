@@ -21,13 +21,13 @@ class Banda {
 
         // Integrante
 
-        Integrante get_Integrante(int i){return *vetorIntegrantes[i];}
-        void set_Integrante(Integrante a,int i){*vetorIntegrantes[i]=a; }
+        vector<Integrante*> get_Integrante(){return vetorIntegrantes;}
+        void set_Integrante(Integrante *a){vetorIntegrantes.push_back(a); }
 
         // Musicas
 
-        Musica get_Musicas(int i){return *Musicas[i];}
-        void set_Musicas(int i, Musica a){*Musicas[i] = a; }
+        vector<Musica*> get_Musicas(){return Musicas;}
+        void set_Musicas(Musica *a){Musicas.push_back(a); }
 
         //Outras
         int empty(){

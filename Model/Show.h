@@ -14,8 +14,8 @@ class Show{
         Show(): nome(""),dia(0),mes(0),ano(0),VetorBandas() {}
         string get_nome(){return nome;}
         string get_data(){return to_string(dia)+"/"+to_string(mes)+"/"+to_string(ano);}
-        Banda get_banda(int i){return *VetorBandas[i];}
-        void set_banda(int i, Banda a){*VetorBandas[i]=a;}
+        vector<Banda*> get_banda(){return VetorBandas;}
+        void set_banda(Banda *a){VetorBandas.push_back(a);}
         void set_nome(string n){nome=n;}
         void set_dia(int d){dia = d;}
         void set_mes(int d){mes = d;}
