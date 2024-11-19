@@ -132,7 +132,7 @@ class View {
         if (Shows.empty()) {
             cout << "Nenhum show foi adicionado ainda :(.";
             } else {
-                for (int i = 0;Shows.size();i++){
+                for (int i = 0;i<Shows.size();i++){
                     cout << "Nome do show: " + Shows[i]->get_nome() + "\n";
                 }
         }
