@@ -13,7 +13,7 @@ class View {
     public: 
     View() {}
     static void bemvinde() {
-        cout << "Bem-vindo(a) a formação do line-up do Festival!";
+        cout << "Bem-vindo(a) a formacao do line-up do Festival!";
     }
     static void incorreto() {
         cout << "A opcao inserida e invalida.\n" << endl;

@@ -9,7 +9,9 @@
 #include <string>
 #include <unistd.h>
 #include <cstdlib>
-#include <SFML/Audio.hpp>
+#include <vector>
+
+//#include <SFML/Audio.hpp>
 
 #include <iostream>
 // "Audio.hpp" é uma biblioteca externa e deve ser incluida no include default
@@ -168,7 +170,7 @@ public:
     void executar()
     {
         interface.bemvinde();
-        sf::Music music; // Inicializa a variável music fora do switch
+       // sf::Music music; // Inicializa a variável music fora do switch
         while (finalizar)
         {
             int i_show, i_banda;
@@ -223,9 +225,9 @@ public:
                 break;
             case 9:
                 cout << "Cuidado...\n";
-                music.openFromFile("audio.ogg");
+               // music.openFromFile("audio.ogg");
                 sleep(3);
-                music.play();
+                //music.play();
                 system("color A & curl ascii.live/can-you-hear-me");
                 break;
             case 0:
