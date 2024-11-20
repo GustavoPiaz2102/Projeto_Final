@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/abrun/OneDrive/Documentos/PROJETO FINAL/Projeto_Final",
-      "program": "c:/Users/abrun/OneDrive/Documentos/PROJETO FINAL/Projeto_Final/build/Debug/outDebug",
+      "cwd": "c:/Users/Gustavo/Desktop/Programas/Projeto_Final",
+      "program": "c:/Users/Gustavo/Desktop/Programas/Projeto_Final/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

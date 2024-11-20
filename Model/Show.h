@@ -24,5 +24,6 @@ class Show{
             if(nome==""&&dia==0&&mes==0&&ano==0&&VetorBandas.empty())return 1;
             else return 0;
         }
+        //Eu retirei o bgl pra salvar a data no arquivo, tava dando muito bug e também não foi requisitado para o projeto
 };
 #endif 
