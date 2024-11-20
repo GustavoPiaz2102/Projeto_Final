@@ -8,12 +8,12 @@
 #include "../Model/Integrante.h"
 #include "../Model/Musica.h"
 using namespace std;
-
+//Tem varias funções aqui que não são chamadas mas vou deixar para uma implementação futura pois a maioria sao mensagens de erro
 class View {
     public: 
     View() {}
     static void bemvinde() {
-        cout << "Bem-vindo(a) a formacao do line-up do Festival!";
+        cout << "Bem-vindo(a) a formacao do line-up do Festival!\n";
     }
     static void incorreto() {
         cout << "A opcao inserida e invalida.\n" << endl;
@@ -88,11 +88,11 @@ class View {
         }
         cout << msg << endl;
     }
-
+    // Eu tinha que trocar essa comparação com size, ele retorna o valor em bits mas eu to comparando com um inteiro. Todavia por sorte não ta dando problema e eu não sei nem como
     void mostrar_musicas(const vector<Musica*>& Musicas){
         cout << "Aqui estao os dados sobre as musicas!\n";
         if (Musicas.empty()) {
-            cout << "Nenhuma musica foi adicionada ainda :(.";
+            cout << "Nenhuma musica foi adicionada ainda :(\n";
             } else {
                 for (int i = 0;i<Musicas.size();i++){
                     cout << "["+to_string(i)+"]"+" Musica: " +Musicas[i]->get_nome()+ " Compositor: " + Musicas[i]->get_compositor() + " Duracao: " + Musicas[i]->get_tempo() + "\n.";
@@ -105,7 +105,7 @@ class View {
         cout << "Aqui estao os dados sobre os integrantes!\n";
 
         if (Integrantes.empty()) {
-            cout << "Nenhum integrante foi adicionado a essa banda ainda :(.";
+            cout << "Nenhum integrante foi adicionado a essa banda ainda :(\n";
             } else {
                 for(int i = 0;i<Integrantes.size();i++){
                     cout << "["+to_string(i)+"]"+"Nome do integrante: " + Integrantes[i]->get_nome() + " Idade: " + to_string(Integrantes[i]->get_idade()) + " Instrumento: " + Integrantes[i]->get_instrumento() << "\n.";
@@ -117,7 +117,7 @@ class View {
         cout << "Aqui estao os dados sobre as bandas!\n";
 
         if (Bandas.empty()) {
-            cout << "Nenhuma banda foi adicionada a esse show ainda :(.";
+            cout << "Nenhuma banda foi adicionada a esse show ainda :(\n";
             } else {
                 for(int i = 0;i<Bandas.size();i++){
                     cout << "["+to_string(i)+"]"+"Nome da banda: " + Bandas[i]->get_nome() + "Genero: " << Bandas[i]->get_genero() << "\n";
@@ -130,14 +130,15 @@ class View {
         cout << "Aqui estao os dados sobre os shows!\n";
 
         if (Shows.empty()) {
-            cout << "Nenhum show foi adicionado ainda :(.";
+            cout << "Nenhum show foi adicionado ainda :(\n";
             } else {
                 for (int i = 0;i<Shows.size();i++){
                     cout << "Nome do show: " + Shows[i]->get_nome() + "\n";
                 }
         }
     }
-
+    //Tem alguma função que chama isso?
+    //Deveria ter alguma função que chama essa?
     void mostrarTudo(const vector<Musica*>& Musicas, const vector<Integrante*>& Integrantes, const vector<Banda*>& Bandas, const vector<Show*>& Shows){
         mostrar_musicas(Musicas);
         mostrar_integrantes(Integrantes);

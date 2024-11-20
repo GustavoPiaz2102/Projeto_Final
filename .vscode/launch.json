@@ -8,10 +8,10 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/Gustavo/Documentos/Projeto_Final",  // Caminho do diretório do projeto
-      "program": "c:/Users/Gustavo/Documentos/Projeto_Final/build/Debug/main.exe",  // Caminho do executável
+      "cwd": "c:/Users/Gustavo/Desktop/Programas/Projeto_Final",
+      "program": "c:/Users/Gustavo/Desktop/Programas/Projeto_Final/build/Debug/outDebug",
       "MIMode": "gdb",
-      "miDebuggerPath": "C:/MinGW/bin/gdb.exe",  // Caminho correto para o GDB, se necessário
+      "miDebuggerPath": "gdb",
       "setupCommands": [
         {
           "description": "Enable pretty-printing for gdb",

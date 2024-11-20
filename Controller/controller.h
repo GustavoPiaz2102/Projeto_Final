@@ -10,11 +10,11 @@
 #include <unistd.h>
 #include <cstdlib>
 #include <vector>
-
-//#include <SFML/Audio.hpp>
-
 #include <iostream>
+//#include <SFML/Audio.hpp>
 // "Audio.hpp" é uma biblioteca externa e deve ser incluida no include default
+// A parte de audio ainda não foi integrada e se for é bom fazer tratamentos para as entradas de audio caso forem feitas pois além do programa da problema no sistema.
+// A manipulação de memoria está funcionando bem mas eu não desaloquei ainda.(Perguntar referente a isso para o professor
 
 using namespace std;
 class Controller
@@ -91,6 +91,7 @@ public:
         }
         return -11;
     }
+    // Essa bomba devia estar na view, mas acessar a memoria dessas variaveis por lá estava dando problema
     void add_show()
     {
         int s = 0;
@@ -128,6 +129,7 @@ public:
             cin >> s;
         } while (s == 1);
     }
+    //A implementação real não depende de um valor entre sim ou não e sim entre 1 e qualquer outro
     void add_musica(int indice_show, int indice_banda)
     {
         int s = 0;
@@ -170,7 +172,6 @@ public:
     void executar()
     {
         interface.bemvinde();
-       // sf::Music music; // Inicializa a variável music fora do switch
         while (finalizar)
         {
             int i_show, i_banda;
@@ -209,32 +210,32 @@ public:
                 add_show();
                 break;
             case 5:
-                i_show = selecionar_show(), i_banda = selecionar_banda(i_show);
-                interface.mostrar_musicas(Shows[i_show]->get_banda()[i_banda]->get_Musicas());
+                i_show = selecionar_show();
+                if(i_show!=-11){i_banda = selecionar_banda(i_show);
+                 if(i_banda!=-11){interface.mostrar_musicas(Shows[i_show]->get_banda()[i_banda]->get_Musicas());}}
                 break;
             case 6:
-                i_show = selecionar_show(), i_banda = selecionar_banda(i_show);
-                interface.mostrar_integrantes(Shows[i_show]->get_banda()[i_banda]->get_Integrante());
+                i_show = selecionar_show();
+                if(i_show!=-11){i_banda = selecionar_banda(i_show);
+                if(i_banda!=-11){interface.mostrar_integrantes(Shows[i_show]->get_banda()[i_banda]->get_Integrante());}}
                 break;
             case 7:
                 i_show = selecionar_show();
-                interface.mostrar_bandas(Shows[i_show]->get_banda());
+                if(i_show!=-11){interface.mostrar_bandas(Shows[i_show]->get_banda());}
                 break;
             case 8:
                 interface.mostrar_shows(Shows);
                 break;
-            case 9:
-                cout << "Cuidado...\n";
-               // music.openFromFile("audio.ogg");
-                sleep(3);
-                //music.play();
-                system("color A & curl ascii.live/can-you-hear-me");
-                break;
             case 0:
                 finalizar = 0;
                 break;
+            case 9:
+                // Testar a implementação disso no Code blocks para ver se eu consigo implementar a biblioteca pois no vscode n ta rolando
+                //Biblioteca das musicas
+                sleep(2);
+                system("color A & curl ascii.live/can-you-hear-me");
+                break;
             default:
-                interface.menu();
                 break;
             }
         }
