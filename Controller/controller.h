@@ -1,16 +1,16 @@
 #ifndef CONTROLLER_H
 #define CONTROLLER_H
+#include <string>
+#include <unistd.h>
+#include <cstdlib>
+#include <vector>
+#include <iostream>
 #include "../Model/Library.h"
 #include "../View/view.h"
 #include "../Model/Integrante.h"
 #include "../Model/Show.h"
 #include "../Model/Banda.h"
 #include "../Model/Musica.h"
-#include <string>
-#include <unistd.h>
-#include <cstdlib>
-#include <vector>
-#include <iostream>
 //#include <SFML/Audio.hpp>
 // "Audio.hpp" é uma biblioteca externa e deve ser incluida no include default
 // A parte de audio ainda não foi integrada e se for é bom fazer tratamentos para as entradas de audio caso forem feitas pois além do programa da problema no sistema.
@@ -111,6 +111,9 @@ public:
             cout << "Deseja Adicionar Mais Shows? 1-Sim 2-Nao\n";
             cin >> s;
         } while (s == 1);
+    }
+    void run_parrot(){
+        system("color C & curl ascii.live/parrot");
     }
     void add_banda(int indice_show)
     {
@@ -232,9 +235,15 @@ public:
             case 9:
                 // Testar a implementação disso no Code blocks para ver se eu consigo implementar a biblioteca pois no vscode n ta rolando
                 //Biblioteca das musicas
-                sleep(2);
+                system("start wmplayer C:/Users/Gustavo/Desktop/Programas/Projeto_Final/Model/Desenvolvimento/aquelequenaodevesermencionado.mp3");
                 system("color A & curl ascii.live/can-you-hear-me");
                 break;
+            case 23:
+                system("start wmplayer C:/Users/Gustavo/Desktop/Programas/Projeto_Final/Model/Desenvolvimento/aquelequenaodevesermencionadodoparaguaio.mp3");
+                run_parrot();
+                break;
+                
+            
             default:
                 break;
             }
