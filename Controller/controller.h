@@ -11,10 +11,10 @@
 #include "../Model/Show.h"
 #include "../Model/Banda.h"
 #include "../Model/Musica.h"
-//#include <SFML/Audio.hpp>
-// "Audio.hpp" é uma biblioteca externa e deve ser incluida no include default
-// A parte de audio ainda não foi integrada e se for é bom fazer tratamentos para as entradas de audio caso forem feitas pois além do programa da problema no sistema.
-// A manipulação de memoria está funcionando bem mas eu não desaloquei ainda.(Perguntar referente a isso para o professor
+// #include <SFML/Audio.hpp>
+//  "Audio.hpp" é uma biblioteca externa e deve ser incluida no include default
+//  A parte de audio ainda não foi integrada e se for é bom fazer tratamentos para as entradas de audio caso forem feitas pois além do programa da problema no sistema.
+//  A manipulação de memoria está funcionando bem mas eu não desaloquei ainda.(Perguntar referente a isso para o professor)
 
 using namespace std;
 class Controller
@@ -112,9 +112,7 @@ public:
             cin >> s;
         } while (s == 1);
     }
-    void run_parrot(){
-        system("color C & curl ascii.live/parrot");
-    }
+
     void add_banda(int indice_show)
     {
         int s = 0;
@@ -132,7 +130,7 @@ public:
             cin >> s;
         } while (s == 1);
     }
-    //A implementação real não depende de um valor entre sim ou não e sim entre 1 e qualquer outro
+    // A implementação real não depende de um valor entre sim ou não e sim entre 1 e qualquer outro
     void add_musica(int indice_show, int indice_banda)
     {
         int s = 0;
@@ -214,36 +212,59 @@ public:
                 break;
             case 5:
                 i_show = selecionar_show();
-                if(i_show!=-11){i_banda = selecionar_banda(i_show);
-                 if(i_banda!=-11){interface.mostrar_musicas(Shows[i_show]->get_banda()[i_banda]->get_Musicas());}}
+                if (i_show != -11)
+                {
+                    i_banda = selecionar_banda(i_show);
+                    if (i_banda != -11)
+                    {
+                        interface.mostrar_musicas(Shows[i_show]->get_banda()[i_banda]->get_Musicas());
+                    }
+                }
                 break;
             case 6:
                 i_show = selecionar_show();
-                if(i_show!=-11){i_banda = selecionar_banda(i_show);
-                if(i_banda!=-11){interface.mostrar_integrantes(Shows[i_show]->get_banda()[i_banda]->get_Integrante());}}
+                if (i_show != -11)
+                {
+                    i_banda = selecionar_banda(i_show);
+                    if (i_banda != -11)
+                    {
+                        interface.mostrar_integrantes(Shows[i_show]->get_banda()[i_banda]->get_Integrante());
+                    }
+                }
                 break;
             case 7:
                 i_show = selecionar_show();
-                if(i_show!=-11){interface.mostrar_bandas(Shows[i_show]->get_banda());}
+                if (i_show != -11)
+                {
+                    interface.mostrar_bandas(Shows[i_show]->get_banda());
+                }
                 break;
             case 8:
                 interface.mostrar_shows(Shows);
                 break;
-            case 0:
-                finalizar = 0;
-                break;
             case 9:
+                if (!Shows.empty())
+                {
+                    interface.mostrarTudo(Shows);
+                }
+                else{
+                    cout << "Nenhum Show Criado ainda :(\n";
+                }
+                break;
+            case 10:
                 // Testar a implementação disso no Code blocks para ver se eu consigo implementar a biblioteca pois no vscode n ta rolando
-                //Biblioteca das musicas
-                system("start wmplayer C:/Users/Gustavo/Desktop/Programas/Projeto_Final/Model/Desenvolvimento/aquelequenaodevesermencionado.mp3");
+                // Biblioteca das musicas
+                system("start wmplayer C:\\Users\\Gustavo\\Desktop\\Projeto_Final\\Model\\Desenvolvimento\\aquelequenaodevesermencionado.mp3");
                 system("color A & curl ascii.live/can-you-hear-me");
                 break;
             case 23:
-                system("start wmplayer C:/Users/Gustavo/Desktop/Programas/Projeto_Final/Model/Desenvolvimento/aquelequenaodevesermencionadodoparaguaio.mp3");
-                run_parrot();
+                system("start wmplayer C:\\Users\\Gustavo\\Desktop\\Projeto_Final\\Model\\Desenvolvimento\\aquelequenaodevesermencionadodoparaguaio.mp3");
+                system("color C & curl ascii.live/parrot");
                 break;
                 
-            
+            case 0:
+                finalizar = 0;
+                break;
             default:
                 break;
             }

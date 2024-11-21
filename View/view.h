@@ -38,6 +38,7 @@ class View {
         mensagem += "6 - Visualizar os integrantes.\n";
         mensagem += "7 - Visualizar as bandas.\n";
         mensagem += "8 - Visualizar os shows que acontecerao.\n";
+        mensagem += "9 - Visualizar Todos os dados \n";
         mensagem += "0 - Sair.\n";
         cout << mensagem << endl;
         cin >> opcao;
@@ -139,11 +140,31 @@ class View {
     }
     //Tem alguma função que chama isso?
     //Deveria ter alguma função que chama essa?
-    void mostrarTudo(const vector<Musica*>& Musicas, const vector<Integrante*>& Integrantes, const vector<Banda*>& Bandas, const vector<Show*>& Shows){
-        mostrar_musicas(Musicas);
-        mostrar_integrantes(Integrantes);
-        mostrar_bandas(Bandas);
-        mostrar_shows(Shows);
+    void mostrarTudo(const vector<Show*>& Shows){
+        if(!Shows.empty()){
+        for(int i = 0;i<Shows.size();i++){
+            cout << "Nome do Show: "<<Shows[i]->get_nome()<< " Data do Show: "<<Shows[i]->get_data()<<endl;
+            vector<Banda*> VetBanda = Shows[i]->get_banda();
+            if(!VetBanda.empty()){
+            for(int j = 0;j<VetBanda.size();j++){
+                cout << "Nome da Banda: "<<VetBanda[j]->get_nome()<<" Genero Da Banda: "<<VetBanda[j]->get_genero()<<endl;
+                vector<Musica*> VetMusicas = VetBanda[j]->get_Musicas();
+                vector<Integrante*> VetIntegrante = VetBanda[j]->get_Integrante();
+                if(!VetMusicas.empty()){
+                for(int k = 0;k<VetMusicas.size();k++){
+                    cout << "Nome Da Musica: "<<VetMusicas[k]->get_nome()<<" Compositor: "<<VetMusicas[k]->get_compositor()<<" "<<VetMusicas[k]->get_tempo()<<endl;
+                }
+                }
+                if(!VetIntegrante.empty()){
+                for(int k = 0;k<VetIntegrante.size();k++){
+                    cout << "Nome Do integrante: "<<VetIntegrante[k]->get_nome()<<" Idade: "<<VetIntegrante[k]->get_idade()<<" Intrumento: "<<VetIntegrante[k]->get_instrumento()<<endl;
+                }
+            }
+            }
+            }
+
+        }
+        }
     }
 };
 
