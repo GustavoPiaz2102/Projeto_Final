@@ -27,9 +27,10 @@ private:
 public:
     Controller() : finalizar(1) {}
     int selecionar_show()
-    {
+    {   
         if (!Shows.empty())
-        {
+        {   
+            cout << "Selecione um Show:\n";
             for (int i = 0; i < Shows.size(); i++)
             {
                 cout << i << " - " << Shows[i]->get_nome() << endl;
@@ -52,10 +53,11 @@ public:
         int qnt_bandas = Shows[indice_show]->get_banda().size();
         for (int i = 0; i < qnt_bandas; i++)
         {
+            cout << "Selecione uma banda: \n";
             cout << i << " - " << Shows[indice_show]->get_banda()[i]->get_nome() << endl;
         }
         if (!Shows[indice_show]->get_banda().empty())
-        {
+        {   
             int indice_banda;
             do
             {
@@ -78,6 +80,7 @@ public:
         }
         if (!Shows[indice_show]->get_banda()[indice_banda]->get_Musicas().empty())
         {
+            cout << "Selecione Uma Musica:\n";
             int a;
             do
             {
@@ -101,7 +104,8 @@ public:
             string nome;
             int ano, mes, dia;
             cout << "Digite o Nome,Ano,Mes E o dia do show\n";
-            cin >> nome >> ano >> mes >> dia;
+            getline(cin,nome);
+            cin >> ano >> mes >> dia;
             a->set_nome(nome);
             a->set_ano(ano);
             a->set_mes(mes);
@@ -121,8 +125,9 @@ public:
             Banda *a = new Banda();
             string nome, genero;
             cout << "Digite o Nome e o genero da banda\n";
-            cin >> nome;
-            cin >> genero;
+            cin.ignore();
+            getline(cin,nome);
+            getline(cin,genero);
             a->set_nome(nome);
             a->set_genero(genero);
             Shows[indice_show]->set_banda(a);
@@ -140,7 +145,10 @@ public:
             string nome, compositor;
             int min, seg;
             cout << "Digite o Nome,Compositor,Minutos e segundos da musica\n";
-            cin >> nome >> compositor >> min >> seg;
+            cin.ignore();
+            getline(cin,nome);
+            getline(cin,compositor);
+            cin >> min >> seg;
             a->set_nome(nome);
             a->set_compositor(compositor);
             a->set_min(min);
@@ -160,7 +168,10 @@ public:
             string nome, instrumento;
             int idade;
             cout << "Digite o Nome,Instrumento e idade do Integrante\n";
-            cin >> nome >> instrumento >> idade;
+            cin.ignore();
+            getline(cin,nome);
+            getline(cin,instrumento);
+            cin >> idade;
             a->set_nome(nome);
             a->set_instrumento(instrumento);
             a->set_idade(idade);
