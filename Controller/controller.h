@@ -5,16 +5,18 @@
 #include <cstdlib>
 #include <vector>
 #include <iostream>
+#include <limits>
 #include "../Model/Library.h"
 #include "../View/view.h"
 #include "../Model/Integrante.h"
 #include "../Model/Show.h"
 #include "../Model/Banda.h"
 #include "../Model/Musica.h"
-// #include <SFML/Audio.hpp>
-//  "Audio.hpp" é uma biblioteca externa e deve ser incluida no include default
+// #include <SFML/Audio.hpp>(não é mais usada)
+//  "Audio.hpp" é uma biblioteca externa e deve ser incluida no include default(não é mais usada)
 //  A parte de audio ainda não foi integrada e se for é bom fazer tratamentos para as entradas de audio caso forem feitas pois além do programa da problema no sistema.
-//  A manipulação de memoria está funcionando bem mas eu não desaloquei ainda.(Perguntar referente a isso para o professor)
+//  A manipulação de memoria está funcionando bem mas eu não desaloquei ainda.(Perguntar referente a isso para o professor)(Ele disse que não necessariamente eu preciso desalocar, talvez eu implemtente depois se tiver tempo)
+// O programa parece estar a prova de mamaco, se o Pedro usar sa porra e bugar eu surto
 
 using namespace std;
 class Controller
@@ -27,10 +29,9 @@ private:
 public:
     Controller() : finalizar(1) {}
     int selecionar_show()
-    {   
+    {
         if (!Shows.empty())
-        {   
-            cout << "Selecione um Show:\n";
+        {
             for (int i = 0; i < Shows.size(); i++)
             {
                 cout << i << " - " << Shows[i]->get_nome() << endl;
@@ -38,62 +39,96 @@ public:
             int a;
             do
             {
+                cout << "Selecione um show pelo numero correspondente:\n";
                 cin >> a;
-            } while (a < 0 || a > Shows.size());
+                if (cin.fail() || a < 0 || a >= Shows.size())
+                {
+                    cout << "Entrada invalida. Tente novamente.\n";
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                }
+                else
+                {
+                    break;
+                }
+            } while (true);
             return a;
         }
         else
         {
-            cout << "Nao existem shows ainda, Crie um primeiro!\n";
+            cout << "Nao existem shows ainda, crie um primeiro!\n";
             return -11;
         }
     }
+
     int selecionar_banda(int indice_show)
     {
         int qnt_bandas = Shows[indice_show]->get_banda().size();
-        for (int i = 0; i < qnt_bandas; i++)
+        if (qnt_bandas > 0)
         {
-            cout << "Selecione uma banda: \n";
-            cout << i << " - " << Shows[indice_show]->get_banda()[i]->get_nome() << endl;
-        }
-        if (!Shows[indice_show]->get_banda().empty())
-        {   
+            for (int i = 0; i < qnt_bandas; i++)
+            {
+                cout << i << " - " << Shows[indice_show]->get_banda()[i]->get_nome() << endl;
+            }
             int indice_banda;
             do
             {
+                cout << "Selecione uma banda pelo numero correspondente:\n";
                 cin >> indice_banda;
-            } while (indice_banda < 0 || indice_banda > Shows[indice_show]->get_banda().size());
+                if (cin.fail() || indice_banda < 0 || indice_banda >= qnt_bandas)
+                {
+                    cout << "Entrada invalida. Tente novamente.\n";
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                }
+                else
+                {
+                    break;
+                }
+            } while (true);
             return indice_banda;
         }
         else
         {
-            cout << "Nao existem bandas ainda, Crie uma primeiro!";
+            cout << "Nao existem bandas ainda, crie uma primeiro!\n";
+            return -11;
         }
-        return -11;
     }
+
     int selecionar_musica(int indice_show, int indice_banda)
     {
         int qnt_musicas = Shows[indice_show]->get_banda()[indice_banda]->get_Musicas().size();
-        for (int i = 0; i < qnt_musicas; i++)
+        if (qnt_musicas > 0)
         {
-            cout << i << " - " << Shows[indice_show]->get_banda()[indice_banda]->get_Musicas()[i] << endl;
-        }
-        if (!Shows[indice_show]->get_banda()[indice_banda]->get_Musicas().empty())
-        {
-            cout << "Selecione Uma Musica:\n";
+            for (int i = 0; i < qnt_musicas; i++)
+            {
+                cout << i << " - " << Shows[indice_show]->get_banda()[indice_banda]->get_Musicas()[i]->get_nome() << endl;
+            }
             int a;
             do
             {
+                cout << "Selecione uma musica pelo numero correspondente:\n";
                 cin >> a;
-            } while (a < 0 || a > Shows[indice_show]->get_banda()[indice_banda]->get_Musicas().size());
+                if (cin.fail() || a < 0 || a >= qnt_musicas)
+                {
+                    cout << "Entrada invalida. Tente novamente.\n";
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                }
+                else
+                {
+                    break;
+                }
+            } while (true);
             return a;
         }
         else
         {
-            cout << "Nao existem musicas ainda, Crie uma primeiro!";
+            cout << "Nao existem musicas ainda, crie uma primeiro!\n";
+            return -11;
         }
-        return -11;
     }
+
     // Essa bomba devia estar na view, mas acessar a memoria dessas variaveis por lá estava dando problema
     void add_show()
     {
@@ -102,10 +137,42 @@ public:
         {
             Show *a = new Show();
             string nome;
-            int ano, mes, dia;
-            cout << "Digite o Nome,Ano,Mes E o dia do show\n";
-            getline(cin,nome);
-            cin >> ano >> mes >> dia;
+            int ano = 0, mes = 0, dia = 0;
+            cout << "Digite o Nome do show:\n";
+            cin.ignore();
+            getline(cin, nome);
+            do
+            {
+                cout << "Digite o Ano, Mes e o Dia do show (valores validos):\n";
+                cin >> ano >> mes >> dia;
+
+                if (cin.fail() || mes < 1 || mes > 12 || dia < 1 || dia > 31)
+                {
+                    cout << "Entrada invalida. Por favor, digite novamente.\n";
+
+                    cin.clear();
+
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+                    continue;
+                }
+
+                if ((mes == 2 && dia > 29) ||
+                    (mes == 2 && dia == 29 && (ano % 4 != 0 || (ano % 100 == 0 && ano % 400 != 0))))
+                {
+                    cout << "Fevereiro não pode ter esse número de dias. Tente novamente.\n";
+                    continue;
+                }
+
+                if ((mes == 4 || mes == 6 || mes == 9 || mes == 11) && dia > 30)
+                {
+                    cout << "O mês " << mes << " não pode ter mais de 30 dias. Tente novamente.\n";
+                    continue;
+                }
+
+                break;
+
+            } while (true);
             a->set_nome(nome);
             a->set_ano(ano);
             a->set_mes(mes);
@@ -116,7 +183,6 @@ public:
             cin >> s;
         } while (s == 1);
     }
-
     void add_banda(int indice_show)
     {
         int s = 0;
@@ -126,36 +192,86 @@ public:
             string nome, genero;
             cout << "Digite o Nome e o genero da banda\n";
             cin.ignore();
-            getline(cin,nome);
-            getline(cin,genero);
+            getline(cin, nome);
+            if (nome.empty())
+            {
+                cout << "Nome invalido. Tente novamente\n";
+                continue;
+            }
+            getline(cin, genero);
+            if (genero.empty())
+            {
+                cout << "Genero invalido. Tente novamente\n";
+                continue;
+            }
             a->set_nome(nome);
             a->set_genero(genero);
             Shows[indice_show]->set_banda(a);
             cout << "Deseja Adicionar Mais Bandas? 1-Sim 2-Nao\n";
             cin >> s;
+            if (cin.fail() || (s != 1 && s != 2))
+            {
+                cout << "Opcao invalida. Encerrando...\n";
+                s = 2;
+            }
         } while (s == 1);
     }
+
     // A implementação real não depende de um valor entre sim ou não e sim entre 1 e qualquer outro
     void add_musica(int indice_show, int indice_banda)
     {
         int s = 0;
+
         do
         {
             Musica *a = new Musica();
             string nome, compositor;
             int min, seg;
-            cout << "Digite o Nome,Compositor,Minutos e segundos da musica\n";
+
+            cout << "Digite o nome da musica:\n";
             cin.ignore();
-            getline(cin,nome);
-            getline(cin,compositor);
+            getline(cin, nome);
+            if (nome.empty())
+            {
+                cout << "O nome da musica nao pode estar vazio. Tente novamente.\n";
+                continue;
+            }
+
+            cout << "Digite o compositor:\n";
+            getline(cin, compositor);
+            if (compositor.empty())
+            {
+                cout << "O compositor nao pode estar vazio. Tente novamente.\n";
+                continue;
+            }
+
+            cout << "Digite os minutos e os segundos da musica (ex: 3 45):\n";
             cin >> min >> seg;
+
+            if (cin.fail() || min < 0 || seg < 0 || seg >= 60)
+            {
+                cout << "Valores invalidos para minutos ou segundos. Minutos devem ser >= 0, e segundos entre 0 e 59.\n";
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                continue;
+            }
+
             a->set_nome(nome);
             a->set_compositor(compositor);
             a->set_min(min);
             a->set_seg(seg);
+
             Shows[indice_show]->get_banda()[indice_banda]->set_Musicas(a);
-            cout << "Deseja adicionar outra musica? 1-Sim 2-Nao\n";
+
+            cout << "Deseja adicionar outra música? (1 - Sim, 2 - Não)\n";
             cin >> s;
+
+            if (cin.fail() || (s != 1 && s != 2))
+            {
+                cout << "Opção inválida. Encerrando...\n";
+                s = 2;
+            }
+
         } while (s == 1);
     }
 
@@ -167,17 +283,39 @@ public:
             Integrante *a = new Integrante();
             string nome, instrumento;
             int idade;
-            cout << "Digite o Nome,Instrumento e idade do Integrante\n";
+            cout << "Digite o Nome, Instrumento e Idade do Integrante\n";
             cin.ignore();
-            getline(cin,nome);
-            getline(cin,instrumento);
+            getline(cin, nome);
+            if (nome.empty())
+            {
+                cout << "Nome invalido. Tente novamente\n";
+                continue;
+            }
+            getline(cin, instrumento);
+            if (instrumento.empty())
+            {
+                cout << "Instrumento invalido. Tente novamente\n";
+                continue;
+            }
             cin >> idade;
+            if (cin.fail() || idade <= 0)
+            {
+                cout << "Idade invalida. Tente novamente\n";
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                continue;
+            }
             a->set_nome(nome);
             a->set_instrumento(instrumento);
             a->set_idade(idade);
             Shows[indice_show]->get_banda()[indice_banda]->set_Integrante(a);
             cout << "Deseja adicionar outro Integrante? 1-Sim 2-Nao\n";
             cin >> s;
+            if (cin.fail() || (s != 1 && s != 2))
+            {
+                cout << "Opcao invalida. Encerrando...\n";
+                s = 2;
+            }
         } while (s == 1);
     }
 
@@ -258,21 +396,22 @@ public:
                 {
                     interface.mostrarTudo(Shows);
                 }
-                else{
+                else
+                {
                     cout << "Nenhum Show Criado ainda :(\n";
                 }
                 break;
             case 10:
-                // Testar a implementação disso no Code blocks para ver se eu consigo implementar a biblioteca pois no vscode n ta rolando
-                // Biblioteca das musicas
+                // Testar a implementação disso no Code blocks para ver se eu consigo implementar a biblioteca pois no vscode n ta rolando(Na real Precisa n kk)
                 system("start wmplayer C:\\Users\\Gustavo\\Desktop\\Projeto_Final\\Model\\Desenvolvimento\\aquelequenaodevesermencionado.mp3");
                 system("color A & curl ascii.live/can-you-hear-me");
                 break;
             case 23:
+            // EU NAO SEI ADICIONAR BIBLIOTECAS EM C++ EU VOU COMETER UM CRIMEE
                 system("start wmplayer C:\\Users\\Gustavo\\Desktop\\Projeto_Final\\Model\\Desenvolvimento\\aquelequenaodevesermencionadodoparaguaio.mp3");
                 system("color C & curl ascii.live/parrot");
                 break;
-                
+
             case 0:
                 finalizar = 0;
                 break;
