@@ -130,7 +130,7 @@ public:
     }
 
     // Essa bomba devia estar na view, mas acessar a memoria dessas variaveis por lá estava dando problema
-    void add_show()
+void add_show()
     {
         int s = 0;
         do
@@ -139,40 +139,26 @@ public:
             string nome;
             int ano = 0, mes = 0, dia = 0;
             cout << "Digite o Nome do show:\n";
-            cin.ignore();
             getline(cin, nome);
-            do
-            {
-                cout << "Digite o Ano, Mes e o Dia do show (valores validos):\n";
-                cin >> ano >> mes >> dia;
-
-                if (cin.fail() || mes < 1 || mes > 12 || dia < 1 || dia > 31)
-                {
-                    cout << "Entrada invalida. Por favor, digite novamente.\n";
-
-                    cin.clear();
-
-                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
-
-                    continue;
-                }
-
-                if ((mes == 2 && dia > 29) ||
-                    (mes == 2 && dia == 29 && (ano % 4 != 0 || (ano % 100 == 0 && ano % 400 != 0))))
-                {
-                    cout << "Fevereiro não pode ter esse número de dias. Tente novamente.\n";
-                    continue;
-                }
-
-                if ((mes == 4 || mes == 6 || mes == 9 || mes == 11) && dia > 30)
-                {
-                    cout << "O mês " << mes << " não pode ter mais de 30 dias. Tente novamente.\n";
-                    continue;
-                }
-
-                break;
-
-            } while (true);
+            do{
+                
+                cout << "Digite um ano para o Show:\n";
+                cin >> ano;
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            }while(cin.fail()||ano<2025||ano>2050);
+            do{
+                cout<< "Digite um mes para o Show:\n";
+                cin>> mes;
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            }while(cin.fail()||mes<1||mes>12);
+            do{
+                cout<< "Digite um dia para o Show:\n";
+                cin >> dia;
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            }while(cin.fail()||(dia<1||(dia>28&&mes==2&&ano%4!=0))||(dia>29&&mes==2&&ano%4==0)||(dia>30&&(mes==4||mes==6||mes==9||mes==11))||(dia>31&&(mes==1||mes==3||mes==5||mes==7||mes==8||mes==10||mes==12)));
             a->set_nome(nome);
             a->set_ano(ano);
             a->set_mes(mes);
@@ -263,12 +249,12 @@ public:
 
             Shows[indice_show]->get_banda()[indice_banda]->set_Musicas(a);
 
-            cout << "Deseja adicionar outra música? (1 - Sim, 2 - Não)\n";
+            cout << "Deseja adicionar outra musica? (1 - Sim, 2 - Nao)\n";
             cin >> s;
 
             if (cin.fail() || (s != 1 && s != 2))
             {
-                cout << "Opção inválida. Encerrando...\n";
+                cout << "Opcao invalida. Encerrando...\n";
                 s = 2;
             }
 
