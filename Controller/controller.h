@@ -395,7 +395,7 @@ void add_show()
             case 23:
             // EU NAO SEI ADICIONAR BIBLIOTECAS EM C++ EU VOU COMETER UM CRIMEE
                 system("start wmplayer C:\\Users\\Gustavo\\Desktop\\Projeto_Final\\Model\\Desenvolvimento\\aquelequenaodevesermencionadodoparaguaio.mp3");
-                system("color C & curl ascii.live/parrot");
+                parrot();
                 break;
 
             case 0:
