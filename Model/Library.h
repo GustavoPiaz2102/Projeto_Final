@@ -167,4 +167,8 @@ ONo................................oc
     }
     return;
 }
+void limpar(){
+    _sleep(500);
+    system("cls");
+}
 #endif

@@ -30,8 +30,10 @@ public:
     Controller() : finalizar(1) {}
     int selecionar_show()
     {
+        limpar();
         if (!Shows.empty())
         {
+            cout << "Selecione um show pelo numero correspondente:\n";
             for (int i = 0; i < Shows.size(); i++)
             {
                 cout << i << " - " << Shows[i]->get_nome() << endl;
@@ -39,7 +41,6 @@ public:
             int a;
             do
             {
-                cout << "Selecione um show pelo numero correspondente:\n";
                 cin >> a;
                 if (cin.fail() || a < 0 || a >= Shows.size())
                 {
@@ -63,9 +64,11 @@ public:
 
     int selecionar_banda(int indice_show)
     {
+        limpar();
         int qnt_bandas = Shows[indice_show]->get_banda().size();
         if (qnt_bandas > 0)
         {
+            cout << "Selecione uma banda pelo numero correspondente:\n";
             for (int i = 0; i < qnt_bandas; i++)
             {
                 cout << i << " - " << Shows[indice_show]->get_banda()[i]->get_nome() << endl;
@@ -73,7 +76,6 @@ public:
             int indice_banda;
             do
             {
-                cout << "Selecione uma banda pelo numero correspondente:\n";
                 cin >> indice_banda;
                 if (cin.fail() || indice_banda < 0 || indice_banda >= qnt_bandas)
                 {
@@ -97,9 +99,11 @@ public:
 
     int selecionar_musica(int indice_show, int indice_banda)
     {
+        limpar();
         int qnt_musicas = Shows[indice_show]->get_banda()[indice_banda]->get_Musicas().size();
         if (qnt_musicas > 0)
         {
+            cout << "Selecione uma musica pelo numero correspondente:\n";
             for (int i = 0; i < qnt_musicas; i++)
             {
                 cout << i << " - " << Shows[indice_show]->get_banda()[indice_banda]->get_Musicas()[i]->get_nome() << endl;
@@ -107,7 +111,6 @@ public:
             int a;
             do
             {
-                cout << "Selecione uma musica pelo numero correspondente:\n";
                 cin >> a;
                 if (cin.fail() || a < 0 || a >= qnt_musicas)
                 {
@@ -138,22 +141,25 @@ void add_show()
             Show *a = new Show();
             string nome;
             int ano = 0, mes = 0, dia = 0;
+            limpar();
             cout << "Digite o Nome do show:\n";
             getline(cin, nome);
             do{
-                
+                limpar();
                 cout << "Digite um ano para o Show:\n";
                 cin >> ano;
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
             }while(cin.fail()||ano<2025||ano>2050);
             do{
+                limpar();
                 cout<< "Digite um mes para o Show:\n";
                 cin>> mes;
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
             }while(cin.fail()||mes<1||mes>12);
             do{
+                limpar();
                 cout<< "Digite um dia para o Show:\n";
                 cin >> dia;
                 cin.clear();
@@ -176,17 +182,22 @@ void add_show()
         {
             Banda *a = new Banda();
             string nome, genero;
-            cout << "Digite o Nome e o genero da banda\n";
+            limpar();
+            cout << "Digite o Nome da Banda:\n";
             cin.ignore();
             getline(cin, nome);
             if (nome.empty())
             {
+                limpar();
                 cout << "Nome invalido. Tente novamente\n";
                 continue;
             }
+            limpar();
+            cout << "Digite o Genero da Banda:\n";
             getline(cin, genero);
             if (genero.empty())
             {
+                limpar();
                 cout << "Genero invalido. Tente novamente\n";
                 continue;
             }
@@ -198,6 +209,8 @@ void add_show()
             if (cin.fail() || (s != 1 && s != 2))
             {
                 cout << "Opcao invalida. Encerrando...\n";
+                sleep(1000);
+                limpar();
                 s = 2;
             }
         } while (s == 1);
@@ -213,16 +226,17 @@ void add_show()
             Musica *a = new Musica();
             string nome, compositor;
             int min, seg;
-
+            limpar();
             cout << "Digite o nome da musica:\n";
             cin.ignore();
             getline(cin, nome);
             if (nome.empty())
             {
+                limpar();
                 cout << "O nome da musica nao pode estar vazio. Tente novamente.\n";
                 continue;
             }
-
+            limpar();
             cout << "Digite o compositor:\n";
             getline(cin, compositor);
             if (compositor.empty())
@@ -230,7 +244,7 @@ void add_show()
                 cout << "O compositor nao pode estar vazio. Tente novamente.\n";
                 continue;
             }
-
+            limpar();
             cout << "Digite os minutos e os segundos da musica (ex: 3 45):\n";
             cin >> min >> seg;
 
@@ -251,7 +265,7 @@ void add_show()
 
             cout << "Deseja adicionar outra musica? (1 - Sim, 2 - Nao)\n";
             cin >> s;
-
+            
             if (cin.fail() || (s != 1 && s != 2))
             {
                 cout << "Opcao invalida. Encerrando...\n";
@@ -266,10 +280,12 @@ void add_show()
         int s = 0;
         do
         {
+            limpar();
             Integrante *a = new Integrante();
             string nome, instrumento;
             int idade;
-            cout << "Digite o Nome, Instrumento e Idade do Integrante\n";
+            limpar();
+            cout << "Digite o Nome do integrante:\n";
             cin.ignore();
             getline(cin, nome);
             if (nome.empty())
@@ -277,12 +293,16 @@ void add_show()
                 cout << "Nome invalido. Tente novamente\n";
                 continue;
             }
+            limpar();
+            cout << "Digite o nome do instrumento:\n";
             getline(cin, instrumento);
             if (instrumento.empty())
             {
                 cout << "Instrumento invalido. Tente novamente\n";
                 continue;
             }
+            limpar();
+            cout<< "Digite a idade do integrante:\n";
             cin >> idade;
             if (cin.fail() || idade <= 0)
             {
@@ -307,9 +327,12 @@ void add_show()
 
     void executar()
     {
+        system("color E");
         interface.bemvinde();
         while (finalizar)
         {
+            sleep(2);
+            limpar();
             int i_show, i_banda;
             switch (interface.menu())
             {
@@ -353,6 +376,7 @@ void add_show()
                     if (i_banda != -11)
                     {
                         interface.mostrar_musicas(Shows[i_show]->get_banda()[i_banda]->get_Musicas());
+                        sleep(1);
                     }
                 }
                 break;
@@ -364,6 +388,7 @@ void add_show()
                     if (i_banda != -11)
                     {
                         interface.mostrar_integrantes(Shows[i_show]->get_banda()[i_banda]->get_Integrante());
+                        sleep(1);
                     }
                 }
                 break;
@@ -372,15 +397,18 @@ void add_show()
                 if (i_show != -11)
                 {
                     interface.mostrar_bandas(Shows[i_show]->get_banda());
+                    sleep(1);
                 }
                 break;
             case 8:
                 interface.mostrar_shows(Shows);
+                sleep(1);
                 break;
             case 9:
                 if (!Shows.empty())
                 {
                     interface.mostrarTudo(Shows);
+                    sleep(1);
                 }
                 else
                 {
