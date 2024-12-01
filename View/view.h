@@ -31,10 +31,10 @@ static int menu() {
     string mensagem = "";
 
     mensagem += "Digite a opcao que voce deseja: \n";
-    mensagem += "1 - Adicionar musicas.\n";
-    mensagem += "2 - Adicionar integrantes.\n";
-    mensagem += "3 - Adicionar banda.\n";
-    mensagem += "4 - Adicionar show!\n";
+    mensagem += "1 - Adicionar show!\n";
+    mensagem += "2 - Adicionar banda.\n";
+    mensagem += "3 - Adicionar musicas.\n";
+    mensagem += "4 - Adicionar integrantes.\n";
     mensagem += "5 - Visualizar musicas que irao tocar.\n";
     mensagem += "6 - Visualizar os integrantes.\n";
     mensagem += "7 - Visualizar as bandas.\n";

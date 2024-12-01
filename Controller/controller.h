@@ -336,7 +336,7 @@ void add_show()
             int i_show, i_banda;
             switch (interface.menu())
             {
-            case 1:
+            case 3:
                 i_show = selecionar_show();
                 if (i_show != -11)
                 {
@@ -347,7 +347,7 @@ void add_show()
                     }
                 }
                 break;
-            case 2:
+            case 4:
                 i_show = selecionar_show();
                 if (i_show != -11)
                 {
@@ -358,14 +358,14 @@ void add_show()
                     }
                 }
                 break;
-            case 3:
+            case 2:
                 i_show = selecionar_show();
                 if (i_show != -11)
                 {
                     add_banda(i_show);
                 }
                 break;
-            case 4:
+            case 1:
                 add_show();
                 break;
             case 5:
@@ -417,9 +417,13 @@ void add_show()
                 break;
             case 10:
                 // Testar a implementação disso no Code blocks para ver se eu consigo implementar a biblioteca pois no vscode n ta rolando(Na real Precisa n kk)
+                try{
                 system("start wmplayer C:\\Users\\Gustavo\\Desktop\\Projeto_Final\\Model\\Desenvolvimento\\aquelequenaodevesermencionado.mp3");
                 system("color A & curl ascii.live/can-you-hear-me");
                 break;
+                }catch(const std::exception& e){
+                    system("taskkill /IM wmplayer.exe /F");
+                }
             case 23:
             // EU NAO SEI ADICIONAR BIBLIOTECAS EM C++ EU VOU COMETER UM CRIMEE
                 system("start wmplayer C:\\Users\\Gustavo\\Desktop\\Projeto_Final\\Model\\Desenvolvimento\\aquelequenaodevesermencionadodoparaguaio.mp3");
